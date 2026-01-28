@@ -11,7 +11,7 @@ execute system commands and internal agent commands in a controlled manner.
 
 ---
 
-## ✨ Key Characteristics
+## Key Characteristics
 
 - Task-based command execution (not a full interactive shell)
 - Clear separation of responsibilities:
@@ -24,7 +24,7 @@ execute system commands and internal agent commands in a controlled manner.
 
 ---
 
-## 🧠 Architecture Overview
+##  Architecture Overview
 
 The agent is structured into clearly defined modules:
 
@@ -56,7 +56,7 @@ transport/ → Communication layer (TCP)
 
 ---
 
-## 🧾 Available Commands
+##  Available Commands
 
 ### Agent Commands
 
@@ -90,7 +90,7 @@ ipconfig
 
 ---
 
-## 🚀 Usage (Controlled Environment)
+##  Usage (Controlled Environment)
 
 1. Start a TCP listener:
    ```bash
@@ -101,13 +101,13 @@ Run the agent on the target system.
 
 Interact with the agent through the task-based console.
 
-⚠️ Disclaimer
+### Disclaimer
 
 This project is intended strictly for educational purposes and authorized
 testing environments.
 The author does not take responsibility for misuse of this software.
 
-📌 Notes
+### Notes
 
 This is not a full interactive TTY or shell emulator.
 
