@@ -1,12 +1,10 @@
 package commands
 
+import info "nombredetuapp/Documents/Proyecto/src/commands/Info"
+
 type CommandHandler func(args []string) string
 
 var Commands = map[string]CommandHandler{
-	"info": InfoCommand,
+	"info": info.InfoCommand,
 	// "help": HelpCommand,
-}
-
-func InfoCommand(args []string) string {
-	return "This is a custom reverse shell application.\n"
 }
