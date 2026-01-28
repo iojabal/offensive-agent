@@ -1,44 +1,116 @@
-# Task-Based Remote Agent (Research)
+📄 README.md
+# Task-Based Remote Agent (Go)
 
-This project is a **simple task-based remote command execution agent** written in Go.
-It is designed for **educational and research purposes**, focusing on architecture clarity
+This project is a **task-based remote agent** written in Go, designed for
+**educational and research purposes**.  
+It focuses on **clean architecture**, command dispatching, and execution flow,
 rather than stealth or advanced evasion techniques.
 
-## Overview
+The agent exposes a minimal interactive console that allows an operator to
+execute system commands and internal agent commands in a controlled manner.
 
-The agent connects to a remote TCP listener and allows controlled command execution
-while maintaining session state (current directory, user context).
+---
 
-It does **not** implement a full interactive shell or TTY emulation.
+## ✨ Key Characteristics
 
-## Features
+- Task-based command execution (not a full interactive shell)
+- Clear separation of responsibilities:
+  - Dispatcher (session control)
+  - Internal commands
+  - System command executor
+- OS-aware execution (Windows / Unix-like systems)
+- Persistent working directory (`cd` handled internally)
+- Simple and readable prompt
 
-- TCP-based transport
-- OS-aware command execution (Windows / Unix)
-- Logical prompt with persistent working directory
-- Built-in handling for `cd` and `exit`
-- Stateless command execution (one process per command)
+---
 
-## What this project is NOT
+## 🧠 Architecture Overview
 
-- Not a full interactive shell
-- Not designed to evade EDR or antivirus solutions
-- Not intended for unauthorized use
-- No data exfiltration or surveillance features
+The agent is structured into clearly defined modules:
 
-## Architecture
 
-- `main.go`  
-  Initializes the connection and starts the agent.
 
-- `transport/TCP.go`  
-  Implements a simple TCP transport abstraction.
+dispatcher/ → Session control and command routing
+commands/ → Internal agent commands (info, help, etc.)
+shell/ → System command executor (PowerShell / sh)
+transport/ → Communication layer (TCP)
 
-- `shell/shell.go`  
-  Handles task-based command execution and session state.
 
-## Usage (Controlled Environment)
+### Dispatcher
+- Controls the session lifecycle
+- Prints the prompt
+- Routes input to:
+  - internal agent commands
+  - system command execution
+- Handles `exit`
+
+### Commands
+- Internal agent commands
+- Do not execute system commands
+- Do not manage connections
+
+### Shell
+- Executes system commands
+- Maintains execution context (current working directory)
+- Does not control session flow or UI
+
+---
+
+## 🧾 Available Commands
+
+### Agent Commands
+
+- `info`  
+  Displays basic execution context information:
+  - OS
+  - Architecture
+  - User
+  - Current working directory
+  - Process ID
+
+- `help`  
+  Lists available agent commands.
+
+- `exit`  
+  Terminates the current session.
+
+### System Commands
+
+Any input that is **not** an internal agent command is treated as a system
+command and executed using the appropriate shell for the operating system.
+
+Examples:
+
+
+dir
+ls -la
+whoami
+ipconfig
+
+
+---
+
+## 🚀 Usage (Controlled Environment)
 
 1. Start a TCP listener:
    ```bash
    nc -lvnp 443
+
+
+Run the agent on the target system.
+
+Interact with the agent through the task-based console.
+
+⚠️ Disclaimer
+
+This project is intended strictly for educational purposes and authorized
+testing environments.
+The author does not take responsibility for misuse of this software.
+
+📌 Notes
+
+This is not a full interactive TTY or shell emulator.
+
+No persistence is enabled by default.
+
+The project prioritizes architectural clarity over feature completeness.
