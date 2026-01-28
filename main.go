@@ -1,7 +1,7 @@
 package main
 
 import (
-	"nombredetuapp/Documents/Proyecto/src/shell"
+	"nombredetuapp/Documents/Proyecto/src/Dispatcher"
 	"nombredetuapp/Documents/Proyecto/src/transport"
 )
 
@@ -15,5 +15,5 @@ func main() {
 		panic(err)
 	}
 	defer conn.Close()
-	shell.ShellHandler(conn)
+	Dispatcher.Run(conn)
 }
