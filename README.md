@@ -82,10 +82,10 @@ command and executed using the appropriate shell for the operating system.
 Examples:
 
 
-dir
-ls -la
-whoami
-ipconfig
+- dir
+- ls -la
+- whoami
+- ipconfig
 
 
 ---
