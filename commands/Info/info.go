@@ -31,13 +31,13 @@ func NewInfoOutput() *InfoOutput {
 func InfoCommand(args []string) string {
 
 	info := NewInfoOutput()
-	output := "System Information:\n"
+	output := "\nSystem Information:\n"
 	output += "-------------------\n"
 	output += "Operating System: " + info.Os + "\n"
 	output += "Architecture: " + info.Arch + "\n"
 	output += "Current User: " + info.User + "\n"
 	output += "Current Directory: " + info.CWD + "\n"
-	output += "Process ID: " + string(rune(info.PID)) + "\n"
+	output += "Process ID: " + string(rune(info.PID)) + "\n\n"
 	return output
 
 }
