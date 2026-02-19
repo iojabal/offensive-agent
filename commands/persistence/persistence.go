@@ -29,5 +29,4 @@ func PersistenceCommand(args []string) string {
 		return "Unknown action. Use 'enable', 'disable', or 'status'.\n"
 	}
 
-	return "Persistence command executed.\n"
 }
